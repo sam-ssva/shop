@@ -1,11 +1,23 @@
 import axios from 'axios'
 import qs from 'qs'
 import {errorAlert} from './alert'
+import store from '../store/index'
+import router from '../router'
 
 //设置基础路径
 // const baseUrl = "/api";
 const baseUrl = "";
 
+// 在请求拦截中设置请求头
+axios.interceptors.request.use(config=>{
+  // console.group('本次请求路径为:'+config.url)
+  if(config.url !== baseUrl+'/api/userlogin'){
+    // 需要设置请求头
+    config.headers.authorization = store.state.user.token
+  }
+  // console.log(config);
+  return config
+})
 
 // 设置一个响应拦截
 axios.interceptors.response.use(res=>{
@@ -174,6 +186,109 @@ export const requestLogin = (data)=>{
   })
 }
 
+// 添加商品分类
+export const addCate = (data)=>{
+  var form = new FormDate();
+  for(let i in data){
+    form.append(i,data[i]);
+  }
+  return axios({
+    method:'post',
+    url:baseUrl+'/api/cateadd',
+    data:form
+  })
+}
 
+// 商品分类列表
+export const getCate = (params)=>{
+  return axios({
+    method:'get',
+    url:baseUrl+'/api/catelist',
+    params
+  })
+}
 
+// 获取分类详情
+export const oneCate = (params)=>{
+  return axios({
+    method:'get',
+    url:baseUrl+'/api/cateinfo',
+    params
+  })
+}
 
+// 修改商品分类
+export const updateCate = (data)=>{
+  var form = new FormDate();
+  for(let i in data){
+    form.append(i,data[i]);
+  }
+  return axios({
+    method:'post',
+    url:baseUrl+'/api/cateedit',
+    data:form
+  })
+}
+
+// 删除商品分类
+export const delCate = (data)=>{
+  return axios({
+    method:'post',
+    url:baseUrl+'/api/catedelete',
+    data:qs.stringify(data)
+  })
+}
+
+// 添加规格属性
+export const addSpec = (data)=>{
+  return axios({
+    method:'post',
+    url:baseUrl+'/api/specsadd',
+    data:qs.stringify(data)
+  })
+}
+
+// 获取规格属性列表
+export const addSpec = (params)=>{
+  return axios({
+    method:'get',
+    url:baseUrl+'/api/specslist',
+    params
+  })
+}
+
+// 获取规格属性总数
+export const specCount = ()=>{
+  return axios({
+    method:'get',
+    url:baseUrl+'/api/specscount',
+    // data:qs.stringify(data)
+  })
+}
+
+// 获取规格属性详情
+export const oneSpec = (params)=>{
+  return axios({
+    method:'get',
+    url:baseUrl+'/api/specsinfo',
+    params
+  })
+}
+
+// 修改规格属性
+export const updateSpec = (data)=>{
+  return axios({
+    method:'post',
+    url:baseUrl+'/api/specsedit',
+    data:qs.stringify(data)
+  })
+}
+
+// 删除规格属性
+export const delSpec = (data)=>{
+  return axios({
+    method:'post',
+    url:baseUrl+'/api/specdelete',
+    data:qs.stringify(data)
+  })
+}

@@ -35,8 +35,8 @@
            <el-form-item label="分类状态" :label-width="formLabelWidth">
               <el-switch
                   v-model="form.status"
-                  active-color="blue"
-                  inactive-color="grey" :active-value="1" :inactive-value="2">
+                  active-color="primary"
+                  inactive-color="info" :active-value="1" :inactive-value="2">
                 </el-switch>
            </el-form-item>
         </el-form>

@@ -17,7 +17,7 @@
       </el-table-column>
       <el-table-column prop="status" label="操作">
           <template v-slot="prop">
-            <el-button type="primary" @click="edit(prop.row.id)">编辑</el-button>
+            <el-button type="success" @click="edit(prop.row.id)">编辑</el-button>
             <el-button type="danger" @click="del(prop.row.id)">删除</el-button>
           </template>
       </el-table-column>

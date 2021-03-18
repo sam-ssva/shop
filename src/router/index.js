@@ -10,6 +10,7 @@ const home = ()=>import('../pages/home/home')
 const role = ()=>import('../pages/role/role')
 const manager = ()=>import('../pages/manager/manager')
 const cate =()=>import('../pages/cate/cate')
+const spec =()=>import('../pages/spec/spec')
 
 export default new Router({
   routes: [
@@ -46,6 +47,11 @@ export default new Router({
           path:'cate',
           name:'商品分类',
           component:cate
+        },
+        {
+          path:'spec',
+          name:'商品规格',
+          component:spec
         },
         {
           path:'',
